@@ -1,32 +1,63 @@
 let citas = JSON.parse(localStorage.getItem("citas")) || [];
+let indiceEditar = null;
 
 function agregarCita() {
-    const fecha = document.getElementById("fechaCita").value;
     const paciente = document.getElementById("pacienteCita").value;
     const medico = document.getElementById("medicoCita").value;
+    const fecha = document.getElementById("fechaCita").value;
 
-    if (!fecha || !paciente || !medico) return;
+    if (paciente === "" || medico === "" || fecha === "") return;
 
-    citas.push({ fecha, paciente, medico });
+    if (indiceEditar === null) {
+        citas.push({ paciente, medico, fecha });
+    } else {
+        citas[indiceEditar] = { paciente, medico, fecha };
+        indiceEditar = null;
+        document.getElementById("btnCita").innerText = "Agregar cita";
+    }
+
     localStorage.setItem("citas", JSON.stringify(citas));
+    limpiarFormulario();
     mostrarCitas();
 }
 
 function mostrarCitas() {
     const lista = document.getElementById("listaCitas");
     lista.innerHTML = "";
-    citas.forEach((c, i) => {
-        lista.innerHTML += `<li>
-            ${c.fecha} - ${c.paciente} - ${c.medico}
-            <button onclick="eliminarCita(${i})">Cancelar</button>
-        </li>`;
+
+    citas.forEach((cita, i) => {
+        lista.innerHTML += `
+            <li>
+                ${cita.paciente} - ${cita.medico} - ${cita.fecha}
+                <div>
+                    <button onclick="editarCita(${i})">Modificar</button>
+                    <button onclick="eliminarCita(${i})">Cancelar</button>
+                </div>
+            </li>
+        `;
     });
 }
 
-function eliminarCita(index) {
-    citas.splice(index, 1);
+function editarCita(i) {
+    const cita = citas[i];
+    document.getElementById("pacienteCita").value = cita.paciente;
+    document.getElementById("medicoCita").value = cita.medico;
+    document.getElementById("fechaCita").value = cita.fecha;
+
+    indiceEditar = i;
+    document.getElementById("btnCita").innerText = "Guardar cambios";
+}
+
+function eliminarCita(i) {
+    citas.splice(i, 1);
     localStorage.setItem("citas", JSON.stringify(citas));
     mostrarCitas();
+}
+
+function limpiarFormulario() {
+    document.getElementById("pacienteCita").value = "";
+    document.getElementById("medicoCita").value = "";
+    document.getElementById("fechaCita").value = "";
 }
 
 mostrarCitas();

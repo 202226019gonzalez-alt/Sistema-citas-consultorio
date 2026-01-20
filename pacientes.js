@@ -1,5 +1,3 @@
-console.log("pacientes.js cargado");
-
 let pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
 
 function agregarPaciente() {

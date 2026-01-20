@@ -1,35 +1,43 @@
-let pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
+document.addEventListener("DOMContentLoaded", () => {
 
-function agregarPaciente() {
-    const nombre = document.getElementById("nombrePaciente").value;
+    let pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
 
-    if (nombre === "") return;
+    function agregarPaciente() {
+        const nombre = document.getElementById("nombrePaciente").value;
+        if (nombre === "") return;
 
-    pacientes.push(nombre);
-    localStorage.setItem("pacientes", JSON.stringify(pacientes));
+        pacientes.push(nombre);
+        localStorage.setItem("pacientes", JSON.stringify(pacientes));
 
-    document.getElementById("nombrePaciente").value = "";
+        document.getElementById("nombrePaciente").value = "";
+        mostrarPacientes();
+    }
+
+    function mostrarPacientes() {
+        const lista = document.getElementById("listaPacientes");
+        if (!lista) return;
+
+        lista.innerHTML = "";
+
+        pacientes.forEach((paciente, i) => {
+            lista.innerHTML += `
+                <li>
+                    ${paciente}
+                    <button onclick="eliminarPaciente(${i})">Eliminar</button>
+                </li>
+            `;
+        });
+    }
+
+    function eliminarPaciente(i) {
+        pacientes.splice(i, 1);
+        localStorage.setItem("pacientes", JSON.stringify(pacientes));
+        mostrarPacientes();
+    }
+
+    // 👉 Hacemos funciones globales
+    window.agregarPaciente = agregarPaciente;
+    window.eliminarPaciente = eliminarPaciente;
+
     mostrarPacientes();
-}
-
-function mostrarPacientes() {
-    const lista = document.getElementById("listaPacientes");
-    lista.innerHTML = "";
-
-    pacientes.forEach((paciente, i) => {
-        lista.innerHTML += `
-            <li>
-                ${paciente}
-                <button onclick="eliminarPaciente(${i})">Eliminar</button>
-            </li>
-        `;
-    });
-}
-
-function eliminarPaciente(i) {
-    pacientes.splice(i, 1);
-    localStorage.setItem("pacientes", JSON.stringify(pacientes));
-    mostrarPacientes();
-}
-
-mostrarPacientes();
+});

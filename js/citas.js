@@ -1,5 +1,5 @@
 let citas = JSON.parse(localStorage.getItem("citas")) || [];
-let indiceEditar = null;
+let indiceEditar = -1;
 
 function agregarCita() {
     const paciente = document.getElementById("pacienteCita").value;
@@ -8,12 +8,14 @@ function agregarCita() {
 
     if (paciente === "" || medico === "" || fecha === "") return;
 
-    if (indiceEditar === null) {
+    if (indiceEditar === -1) {
+        // AGREGAR
         citas.push({ paciente, medico, fecha });
     } else {
+        // MODIFICAR
         citas[indiceEditar] = { paciente, medico, fecha };
-        indiceEditar = null;
-        document.getElementById("btnCita").innerText = "Agregar cita";
+        indiceEditar = -1;
+        document.getElementById("btnCita").innerText = "Agendar";
     }
 
     localStorage.setItem("citas", JSON.stringify(citas));
@@ -40,6 +42,7 @@ function mostrarCitas() {
 
 function editarCita(i) {
     const cita = citas[i];
+
     document.getElementById("pacienteCita").value = cita.paciente;
     document.getElementById("medicoCita").value = cita.medico;
     document.getElementById("fechaCita").value = cita.fecha;

@@ -15,12 +15,15 @@
     <button onclick="mostrarSeccion('citas')">Citas</button>
 </nav>
 
-<section id="pacientes" style="display:none;">
-    <h2>Pacientes</h2>
-    <input id="nombrePaciente" placeholder="Nombre del paciente">
-    <button onclick="agregarPaciente()">Agregar</button>
-    <ul id="listaPacientes"></ul>
+<section id="citas" style="display:none;">
+    <h2>Citas</h2>
+    <input type="date" id="fechaCita">
+    <input id="pacienteCita" placeholder="Paciente">
+    <input id="medicoCita" placeholder="Médico">
+    <button id="btnCita" onclick="agregarCita()">Agendar</button>
+    <ul id="listaCitas"></ul>
 </section>
+
 
 <section id="medicos" style="display:none;">
     <h2>Médicos</h2>

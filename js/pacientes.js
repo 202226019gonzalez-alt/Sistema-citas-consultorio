@@ -6,16 +6,21 @@ function agregarPaciente() {
 
     pacientes.push(nombre);
     localStorage.setItem("pacientes", JSON.stringify(pacientes));
+    document.getElementById("nombrePaciente").value = "";
     mostrarPacientes();
 }
 
 function mostrarPacientes() {
     const lista = document.getElementById("listaPacientes");
     lista.innerHTML = "";
+
     pacientes.forEach((p, i) => {
-        lista.innerHTML += `<li>${p}
-            <button onclick="eliminarPaciente(${i})">Eliminar</button>
-        </li>`;
+        lista.innerHTML += `
+            <li>
+                ${p}
+                <button onclick="eliminarPaciente(${i})">Eliminar</button>
+            </li>
+        `;
     });
 }
 

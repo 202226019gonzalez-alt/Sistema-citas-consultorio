@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Citas Médicas</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<h1>Sistema de Gestión de Citas</h1>
+
+<nav>
+    <button onclick="mostrarSeccion('pacientes')">Pacientes</button>
+    <button onclick="mostrarSeccion('medicos')">Médicos</button>
+    <button onclick="mostrarSeccion('citas')">Citas</button>
+</nav>
+
+<section id="pacientes" style="display:none;">
+    <h2>Pacientes</h2>
+    <input id="nombrePaciente" placeholder="Nombre del paciente">
+    <button onclick="agregarPaciente()">Agregar</button>
+    <ul id="listaPacientes"></ul>
+</section>
+
+<section id="medicos" style="display:none;">
+    <h2>Médicos</h2>
+    <input id="nombreMedico" placeholder="Nombre del médico">
+    <button onclick="agregarMedico()">Agregar</button>
+    <ul id="listaMedicos"></ul>
+</section>
+
+<section id="citas" style="display:none;">
+    <h2>Citas</h2>
+    <input type="date" id="fechaCita">
+    <input id="pacienteCita" placeholder="Paciente">
+    <input id="medicoCita" placeholder="Médico">
+    <button onclick="agregarCita()">Agendar</button>
+    <ul id="listaCitas"></ul>
+</section>
+
+<script src="js/pacientes.js"></script>
+<script src="js/medicos.js"></script>
+<script src="js/citas.js"></script>
+
+<script>
+function mostrarSeccion(id) {
+    document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+</script>
+
+</body>
+</html>

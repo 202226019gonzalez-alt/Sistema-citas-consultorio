@@ -1,75 +1,104 @@
+/* ===== ESTILOS GENERALES ===== */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    margin: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #74ebd5, #9face6);
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #ffffff;
+    padding: 20px;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* ===== MENÚ ===== */
 nav {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
 }
 
 nav button {
-    padding: 10px 15px;
-    margin: 5px;
+    background-color: #ffffff;
+    color: #333;
     border: none;
-    background-color: #3498db;
-    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: 0.3s;
 }
 
 nav button:hover {
-    background-color: #2980b9;
+    background-color: #333;
+    color: #ffffff;
 }
 
+/* ===== SECCIONES ===== */
 section {
-    background-color: white;
-    padding: 15px;
+    background-color: #ffffff;
     max-width: 500px;
-    margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* ===== INPUTS ===== */
 input {
-    width: 90%;
-    padding: 8px;
-    margin: 5px 0;
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
 }
 
-button {
-    padding: 7px 10px;
-    margin-top: 5px;
+/* ===== BOTONES ===== */
+section button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
+section button:hover {
+    background-color: #43a047;
+}
+
+/* ===== LISTAS ===== */
 ul {
     list-style: none;
     padding: 0;
 }
 
 li {
-    background-color: #ecf0f1;
-    margin: 5px 0;
-    padding: 8px;
+    background-color: #f1f1f1;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* ===== BOTÓN ELIMINAR ===== */
 li button {
-    background-color: #e74c3c;
+    background-color: #e53935;
     color: white;
     border: none;
-    border-radius: 3px;
+    padding: 6px 10px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
 li button:hover {
-    background-color: #c0392b;
+    background-color: #c62828;
 }
